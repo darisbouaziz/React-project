@@ -23,17 +23,20 @@ export default Rating;
 
 import { useState } from "react";
 
-const Rating = () => {
+//Default 'heading' prop
+const Rating = ({
+  heading = "Rate Your Experience",
+  color = "gold",
+  feedbackMessages = ["Terrible", "Poor", "Fair", "Good", "Excellent"],
+}) => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
 
   const stars = Array.from({ length: 5 }, (_, i) => i + 1); //Create [1, 2, 3, 4, 5]
 
-  const feedbackMessages = ["Terrible", "Poor", "Fair", "Good", "Excellent"];
-
   return (
     <div className="rating-container">
-      <h2>Rate Your Experience</h2>
+      <h2>{heading}</h2>
       <div className="stars">
         {stars.map((star) => (
           <span
@@ -41,7 +44,10 @@ const Rating = () => {
             onMouseEnter={() => setHover(star)}
             onMouseLeave={() => setHover(0)}
             key={star}
-            className={`star ${star <= (hover || rating) ? "active" : ""}`}
+            className="star"
+            style={{
+              color: star <= (hover || rating) ? color : "#ccc",
+            }}
           >
             {"\u2605"}
           </span>
