@@ -29,6 +29,8 @@ const Rating = () => {
 
   const stars = Array.from({ length: 5 }, (_, i) => i + 1); //Create [1, 2, 3, 4, 5]
 
+  const feedbackMessages = ["Terrible", "Poor", "Fair", "Good", "Excellent"];
+
   return (
     <div className="rating-container">
       <h2>Rate Your Experience</h2>
@@ -39,12 +41,13 @@ const Rating = () => {
             onMouseEnter={() => setHover(star)}
             onMouseLeave={() => setHover(0)}
             key={star}
-            className="star"
+            className={`star ${star <= (hover || rating) ? "active" : ""}`}
           >
             {"\u2605"}
           </span>
         ))}
       </div>
+      {rating > 0 && <p className="feedback">{feedbackMessages[rating - 1]}</p>}
     </div>
   );
 };
