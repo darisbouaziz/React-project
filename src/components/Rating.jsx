@@ -24,6 +24,7 @@ export default Rating;
 import { useState } from "react";
 import Star from "./Star";
 import Modal from "./Model";
+import Button from "./button";
 
 //Default 'heading' prop
 const Rating = ({
@@ -69,13 +70,21 @@ const Rating = ({
       </div>
       {rating > 0 && <p className="feedback">{feedbackMessages[rating - 1]}</p>}
 
-      <button
+      {/* <button
         className="submit-btn"
         onClick={handleSubmit}
         disabled={rating === 0}
       >
         Submit
-      </button>
+      </button> */}
+      <Button
+        className="submit-btn"
+        onClick={handleSubmit}
+        disabled={rating === 0}
+      >
+        Submit
+      </Button>
+
       <Modal isOpen={submitted} onClose={closeModel} rating={rating} />
     </div>
   );
