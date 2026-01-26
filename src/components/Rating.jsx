@@ -23,6 +23,7 @@ export default Rating;
 
 import { useState } from "react";
 import Star from "./Star";
+import Modal from "./Model";
 
 //Default 'heading' prop
 const Rating = ({
@@ -42,6 +43,7 @@ const Rating = ({
     }
   };
 
+  //Close model and reset UI
   const closeModel = () => {
     setSubmitted(false);
     setRating(0);
@@ -74,20 +76,7 @@ const Rating = ({
       >
         Submit
       </button>
-      {/* Modal */}
-      {submitted && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>Thank You</h2>
-            <p>
-              You rated us {rating} star{rating > 1 ? "s" : ""}
-            </p>
-            <button className="close-btn" onClick={closeModel}>
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      <Modal isOpen={submitted} onClose={closeModel} rating={rating} />
     </div>
   );
 };
